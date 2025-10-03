@@ -1,4 +1,4 @@
-def create():Code has comments. Press enter to view.
+def create():
     note = input("Введите текст заметки: ")
     with open("notes.txt", "a") as file:
         file.write(note + "\n")
@@ -99,7 +99,7 @@ def interface():
             case "5":
                 show()
             case _:
-                print("❌ Такой команды нет, введите число от 1 до 5")
+                print("Такой команды нет, введите число от 1 до 5")
                 continue
 
 interface()
