@@ -1,5 +1,3 @@
-using System;
-
 class Polynomial
 {
     private int degree;
