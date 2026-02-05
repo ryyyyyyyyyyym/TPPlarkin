@@ -10,7 +10,7 @@ class Student
         this.age = 0;
         this.group = "10.2";
     }
-    public Student(string name, int age, string group)
+    public Student(string name, int age, string group) 
     {
         this.name = name;
         this.age = age;
