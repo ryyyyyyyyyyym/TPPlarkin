@@ -1,0 +1,300 @@
+// ===================== CONDITIONS =====================
+
+public class HasItemCondition : ConditionBase
+{
+    private string item;
+
+    public HasItemCondition(string item)
+    {
+        this.item = item;
+    }
+
+    public override bool Check(GameState state)
+    {
+        return state.HasItem(item);
+    }
+}
+
+public class FlagCondition : ConditionBase
+{
+    private string flag;
+
+    public FlagCondition(string flag)
+    {
+        this.flag = flag;
+    }
+
+    public override bool Check(GameState state)
+    {
+        return state.GetFlag(flag);
+    }
+}
+
+public class HealthCondition : ConditionBase
+{
+    private int minHealth;
+
+    public HealthCondition(int minHealth)
+    {
+        this.minHealth = minHealth;
+    }
+
+    public override bool Check(GameState state)
+    {
+        return state.Health >= minHealth;
+    }
+}
+
+public class AndCondition : ConditionBase
+{
+    private ICondition left;
+    private ICondition right;
+
+    public AndCondition(ICondition left, ICondition right)
+    {
+        this.left = left;
+        this.right = right;
+    }
+
+    public override bool Check(GameState state)
+    {
+        return left.Check(state) && right.Check(state);
+    }
+}
+
+public class OrCondition : ConditionBase
+{
+    private ICondition left;
+    private ICondition right;
+
+    public OrCondition(ICondition left, ICondition right)
+    {
+        this.left = left;
+        this.right = right;
+    }
+
+    public override bool Check(GameState state)
+    {
+        return left.Check(state) || right.Check(state);
+    }
+}
+
+public class NotCondition : ConditionBase
+{
+    private ICondition condition;
+
+    public NotCondition(ICondition condition)
+    {
+        this.condition = condition;
+    }
+
+    public override bool Check(GameState state)
+    {
+        return !condition.Check(state);
+    }
+}
+
+// ===================== EFFECTS =====================
+
+public class AddItemEffect : EffectBase
+{
+    private string item;
+
+    public AddItemEffect(string item)
+    {
+        this.item = item;
+    }
+
+    public override void Apply(GameState state)
+    {
+        state.AddItem(item);
+    }
+}
+
+public class RemoveItemEffect : EffectBase
+{
+    private string item;
+
+    public RemoveItemEffect(string item)
+    {
+        this.item = item;
+    }
+
+    public override void Apply(GameState state)
+    {
+        state.RemoveItem(item);
+    }
+}
+
+public class SetFlagEffect : EffectBase
+{
+    private string flag;
+    private bool value;
+
+    public SetFlagEffect(string flag, bool value)
+    {
+        this.flag = flag;
+        this.value = value;
+    }
+
+    public override void Apply(GameState state)
+    {
+        state.SetFlag(flag, value);
+    }
+}
+
+public class DamageEffect : EffectBase
+{
+    private int damage;
+
+    public DamageEffect(int damage)
+    {
+        this.damage = damage;
+    }
+
+    public override void Apply(GameState state)
+    {
+        state.TakeDamage(damage);
+    }
+}
+
+public class HealEffect : EffectBase
+{
+    private int heal;
+
+    public HealEffect(int heal)
+    {
+        this.heal = heal;
+    }
+
+    public override void Apply(GameState state)
+    {
+        state.Heal(heal);
+    }
+}
+
+public class LogEffect : EffectBase
+{
+    private string message;
+
+    public LogEffect(string message)
+    {
+        this.message = message;
+    }
+
+    public override void Apply(GameState state)
+    {
+        state.AddLog(message);
+    }
+}
+
+// ===================== INTERACTABLE OBJECTS =====================
+
+public class Chest : IInteractable
+{
+    public string Id { get; private set; }
+    private bool opened;
+    private IEffect[] effects;
+
+    public Chest(string id, IEffect[] effects)
+    {
+        Id = id;
+        this.effects = effects;
+        opened = false;
+    }
+
+    public void Interact(GameState state)
+    {
+        if (opened)
+        {
+            state.AddLog("Сундук уже открыт.");
+            return;
+        }
+
+        foreach (var effect in effects)
+            effect.Apply(state);
+
+        opened = true;
+    }
+}
+
+public class Door : IInteractable
+{
+    public string Id { get; private set; }
+
+    private ICondition condition;
+    private IEffect[] effects;
+
+    public Door(string id, ICondition condition, IEffect[] effects)
+    {
+        Id = id;
+        this.condition = condition;
+        this.effects = effects;
+    }
+
+    public void Interact(GameState state)
+    {
+        if (condition.Check(state))
+        {
+            foreach (var effect in effects)
+                effect.Apply(state);
+        }
+        else
+        {
+            state.AddLog("Дверь закрыта.");
+        }
+    }
+}
+
+public class NPC : IInteractable
+{
+    public string Id { get; private set; }
+
+    private ICondition condition;
+    private IEffect[] effects;
+
+    public NPC(string id, ICondition condition, IEffect[] effects)
+    {
+        Id = id;
+        this.condition = condition;
+        this.effects = effects;
+    }
+
+    public void Interact(GameState state)
+    {
+        if (condition.Check(state))
+        {
+            foreach (var effect in effects)
+                effect.Apply(state);
+        }
+        else
+        {
+            state.AddLog("NPC не реагирует.");
+        }
+    }
+}
+
+public class Trap : IInteractable
+{
+    public string Id { get; private set; }
+    private bool triggered;
+    private IEffect[] effects;
+
+    public Trap(string id, IEffect[] effects)
+    {
+        Id = id;
+        this.effects = effects;
+        triggered = false;
+    }
+
+    public void Interact(GameState state)
+    {
+        if (triggered)
+            return;
+
+        foreach (var effect in effects)
+            effect.Apply(state);
+
+        triggered = true;
+    }
+}
