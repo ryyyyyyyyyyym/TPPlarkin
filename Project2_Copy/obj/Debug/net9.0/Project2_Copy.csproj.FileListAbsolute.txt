@@ -1,0 +1,15 @@
+C:\Work\TPPlarkin-main\Project2_Copy\bin\Debug\net9.0\Project2_Copy.exe
+C:\Work\TPPlarkin-main\Project2_Copy\bin\Debug\net9.0\Project2_Copy.deps.json
+C:\Work\TPPlarkin-main\Project2_Copy\bin\Debug\net9.0\Project2_Copy.runtimeconfig.json
+C:\Work\TPPlarkin-main\Project2_Copy\bin\Debug\net9.0\Project2_Copy.dll
+C:\Work\TPPlarkin-main\Project2_Copy\bin\Debug\net9.0\Project2_Copy.pdb
+C:\Work\TPPlarkin-main\Project2_Copy\obj\Debug\net9.0\Project2_Copy.GeneratedMSBuildEditorConfig.editorconfig
+C:\Work\TPPlarkin-main\Project2_Copy\obj\Debug\net9.0\Project2_Copy.AssemblyInfoInputs.cache
+C:\Work\TPPlarkin-main\Project2_Copy\obj\Debug\net9.0\Project2_Copy.AssemblyInfo.cs
+C:\Work\TPPlarkin-main\Project2_Copy\obj\Debug\net9.0\Project2_Copy.csproj.CoreCompileInputs.cache
+C:\Work\TPPlarkin-main\Project2_Copy\obj\Debug\net9.0\Project2_Copy.sourcelink.json
+C:\Work\TPPlarkin-main\Project2_Copy\obj\Debug\net9.0\Project2_Copy.dll
+C:\Work\TPPlarkin-main\Project2_Copy\obj\Debug\net9.0\refint\Project2_Copy.dll
+C:\Work\TPPlarkin-main\Project2_Copy\obj\Debug\net9.0\Project2_Copy.pdb
+C:\Work\TPPlarkin-main\Project2_Copy\obj\Debug\net9.0\Project2_Copy.genruntimeconfig.cache
+C:\Work\TPPlarkin-main\Project2_Copy\obj\Debug\net9.0\ref\Project2_Copy.dll

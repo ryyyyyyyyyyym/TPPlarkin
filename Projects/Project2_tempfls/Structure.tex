@@ -1,0 +1,171 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\title{Мини-движок квеста на C\# \\ Проектирование архитектуры \\ Урок 1}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Список классов и интерфейсов}
+
+\subsection{Основные классы}
+\begin{itemize}
+\item Game
+\item GameState
+\item Player
+\item Location
+\end{itemize}
+
+\subsection{Интерфейсы}
+\begin{itemize}
+\item ICommand
+\item IInteractable
+\item ICondition
+\item IEffect
+\end{itemize}
+
+\subsection{Абстрактные классы}
+\begin{itemize}
+\item CommandBase
+\item ConditionBase
+\item EffectBase
+\item GameEventBase
+\end{itemize}
+
+\subsection{Команды}
+\begin{itemize}
+\item LookCommand
+\item GoCommand
+\item InteractCommand
+\item InventoryCommand
+\item HelpCommand
+\end{itemize}
+
+\subsection{Условия}
+\begin{itemize}
+\item HasItemCondition
+\item FlagCondition
+\item HealthCondition
+\item AndCondition
+\item OrCondition
+\item NotCondition
+\end{itemize}
+
+\subsection{Эффекты}
+\begin{itemize}
+\item AddItemEffect
+\item RemoveItemEffect
+\item SetFlagEffect
+\item DamageEffect
+\item HealEffect
+\item LogEffect
+\item AddExitEffect
+\item ChangeLocationEffect
+\end{itemize}
+
+\subsection{Объекты взаимодействия}
+\begin{itemize}
+\item Chest
+\item Door
+\item NPC
+\item Trap
+\end{itemize}
+
+\subsection{События}
+\begin{itemize}
+\item OnEnterLocationEvent
+\item OnTurnEvent
+\item OneTimeEvent
+\end{itemize}
+
+\section{Роли основных классов}
+
+\textbf{Game} — основной класс игры, управляет игровым циклом.
+
+\textbf{GameState} — хранит состояние игры: здоровье игрока, инвентарь, флаги мира и журнал событий.
+
+\textbf{Player} — представляет игрока и его характеристики.
+
+\textbf{Location} — описывает локацию игры: название, описание, объекты, события и выходы.
+
+\textbf{ICommand} — интерфейс всех игровых команд.
+
+\textbf{IInteractable} — интерфейс объектов, с которыми может взаимодействовать игрок.
+
+\textbf{ICondition} — интерфейс условий, проверяющих состояние игры.
+
+\textbf{IEffect} — интерфейс эффектов, которые изменяют состояние игры.
+
+\section{Схема локаций}
+
+Игровой мир состоит из следующих локаций:
+
+\begin{itemize}
+\item Hall — стартовая зона
+\item Storage — склад
+\item DarkCorridor — тёмный коридор
+\item GeneratorRoom — комната генератора
+\item Exit — выход
+\end{itemize}
+
+Связи между локациями:
+
+\begin{itemize}
+\item Hall → Storage
+\item Hall → DarkCorridor
+\item Storage → GeneratorRoom
+\item DarkCorridor → Exit
+\end{itemize}
+
+Некоторые переходы могут открываться только после выполнения условий.
+
+\section{Игровые механики}
+
+В игре реализованы следующие механики:
+
+\begin{itemize}
+
+\item \textbf{Тёмный коридор} — если игрок входит в DarkCorridor без предмета Torch, он получает урон.
+
+\item \textbf{Дверь с ключом} — дверь в Storage открывается только если у игрока есть предмет Key.
+
+\item \textbf{Генератор} — генератор можно включить только при наличии Fuse и Wrench.
+
+\item \textbf{Ловушка} — в одной из локаций находится одноразовая ловушка, которая наносит урон игроку.
+
+\end{itemize}
+
+\section{Квесты}
+
+\subsection{Квест 1: Включить генератор}
+
+\textbf{Описание:}  
+Игрок должен найти необходимые предметы и включить генератор.
+
+\textbf{Условия выполнения:}
+
+\begin{itemize}
+\item Найти Fuse
+\item Найти Wrench
+\item Активировать генератор в GeneratorRoom
+\end{itemize}
+
+После выполнения устанавливается флаг \texttt{GeneratorOn}.
+
+\subsection{Квест 2: Добраться до выхода}
+
+\textbf{Описание:}  
+Игрок должен найти путь через локации и добраться до Exit.
+
+\textbf{Условие завершения:}
+
+Игрок находится в локации Exit.
+
+\end{document}

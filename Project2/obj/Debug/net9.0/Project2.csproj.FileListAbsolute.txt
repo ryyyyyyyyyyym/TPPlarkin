@@ -1,0 +1,15 @@
+C:\Work\TPPlarkin-main\Project2\bin\Debug\net9.0\Project2.exe
+C:\Work\TPPlarkin-main\Project2\bin\Debug\net9.0\Project2.deps.json
+C:\Work\TPPlarkin-main\Project2\bin\Debug\net9.0\Project2.runtimeconfig.json
+C:\Work\TPPlarkin-main\Project2\bin\Debug\net9.0\Project2.dll
+C:\Work\TPPlarkin-main\Project2\bin\Debug\net9.0\Project2.pdb
+C:\Work\TPPlarkin-main\Project2\obj\Debug\net9.0\Project2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Work\TPPlarkin-main\Project2\obj\Debug\net9.0\Project2.AssemblyInfoInputs.cache
+C:\Work\TPPlarkin-main\Project2\obj\Debug\net9.0\Project2.AssemblyInfo.cs
+C:\Work\TPPlarkin-main\Project2\obj\Debug\net9.0\Project2.csproj.CoreCompileInputs.cache
+C:\Work\TPPlarkin-main\Project2\obj\Debug\net9.0\Project2.sourcelink.json
+C:\Work\TPPlarkin-main\Project2\obj\Debug\net9.0\Project2.dll
+C:\Work\TPPlarkin-main\Project2\obj\Debug\net9.0\refint\Project2.dll
+C:\Work\TPPlarkin-main\Project2\obj\Debug\net9.0\Project2.pdb
+C:\Work\TPPlarkin-main\Project2\obj\Debug\net9.0\Project2.genruntimeconfig.cache
+C:\Work\TPPlarkin-main\Project2\obj\Debug\net9.0\ref\Project2.dll

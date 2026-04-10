@@ -1,26 +1,24 @@
-//Интерфейсы
-
 public interface ICommand
 {
     string Name { get; }
     void Execute(GameState state, string[] args);
 }
+
 public interface IInteractable
 {
     string Id { get; }
-
     void Interact(GameState state);
 }
+
 public interface ICondition
 {
     bool Check(GameState state);
 }
+
 public interface IEffect
 {
     void Apply(GameState state);
 }
-
-//Абстрактные классы
 
 public abstract class CommandBase : ICommand
 {
@@ -33,14 +31,17 @@ public abstract class CommandBase : ICommand
 
     public abstract void Execute(GameState state, string[] args);
 }
+
 public abstract class ConditionBase : ICondition
 {
     public abstract bool Check(GameState state);
 }
+
 public abstract class EffectBase : IEffect
 {
     public abstract void Apply(GameState state);
 }
+
 public abstract class GameEventBase
 {
     protected ICondition condition;
@@ -52,14 +53,12 @@ public abstract class GameEventBase
         this.effects = effects;
     }
 
-    public void Execute(GameState state)
+    public virtual void Execute(GameState state)
     {
         if (condition.Check(state))
         {
-            for (int i = 0; i < effects.Length; i++)
-            {
-                effects[i].Apply(state);
-            }
+            foreach (var e in effects)
+                e.Apply(state);
         }
     }
 }

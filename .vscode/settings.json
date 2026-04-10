@@ -1,3 +1,4 @@
 {
-    "claudeCodeChat.permissions.yoloMode": false
+    "claudeCodeChat.permissions.yoloMode": false,
+    "dotnet.defaultSolution": "Project2_game.sln"
 }
