@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class GameState
 {
-    public int Health { get; private set; } = 100;
+    public int Health { get; private set; } = 50;
     public Location CurrentLocation { get; set; } = null!;
 
     private List<string> inventory = new List<string>();

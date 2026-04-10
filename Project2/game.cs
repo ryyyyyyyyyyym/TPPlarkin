@@ -21,6 +21,7 @@ public class Game
             new StatusCommand(),
             new HelpCommand()
         }.ToDictionary(c => c.Name, c => c);
+        
     }
 
     public void Run()
